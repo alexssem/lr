@@ -1,18 +1,26 @@
-def find_missing_nums(nums):
-    list1 = nums   
-    n = 0
-    for i in list1:
+import random #Импорт модуля случайных чисел
+nums=[] #Создание пустого списка
+def find_missing_nums(nums): #Объявление функции с аргументом (созданным пустым списком)
+    n = 1
+    a=int(input('Введите длину и диапазон списка: '))
+    a+=1
+    while n<a: #Цикл, который создает список с числами в заданном диапазоне с заданной длинной
+        nums.append(n)
         n += 1
-        
-    list2 = [list2 for list2 in range(1, n+1)]
+    print(nums)
 
-    k = 0
-    list3 = []
-    while k < n:
-        if list2[k] not in list1:
-            list3.append(list2[k])
-            k+=1
+    list2 = [random.randint(1, n-1) for list2 in range(1, n)] #Цикл, создающий список со случайными числами из заданного диапазона заданной длин
+    print(list2)
+
+    list3=[] #Создание пустого списка
+    for i in range(len(nums)+1): #Цикл, сравнивающий два списка и добавляющий недостающие значения случайного списка в пустой список
+        if i not in list2:
+            list3.append(i)
+            i+=1
         else:
-            k+=1
-            
-    return list3
+            i+=1
+
+    return list3[1:] #Возвращение списка с недостающими числами начиная с индекса 1 т.к. сравнивающий цикл рассматривает 0
+
+print(find_missing_nums(nums)) #Вызов функции
+
